@@ -24,7 +24,7 @@ def playermove(icon):
     '''modifies the board with the players input'''
     print("Your turn player '{}'".format(icon))
     choice = 'blank'
-    while choice not in list(range(1,9)):
+    while choice not in list(range(1,10)):
         choice = int(input('Enter your move (1-9): '))
     if board[choice-1] == ' ':
         board[choice-1] = icon
@@ -75,3 +75,5 @@ while True:
     elif draw():
         print ('Its a Draw!')
         break
+
+input('Press any key to exit')
