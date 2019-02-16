@@ -68,7 +68,6 @@ while True:
         print ('Its a Draw!')
         break
     playermove('X')
-    displayboard()
     if victory('X'):
         print("'X' Wins!")
         break
