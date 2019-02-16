@@ -1,6 +1,8 @@
 # naughts and crosses game
 
+'''creates the board'''
 board = [' 'for i in range(9)]
+
 
 def displayboard():
     '''displays the board'''
@@ -17,12 +19,63 @@ def displayboard():
     print(mid2)
     print(row3)
     print('')
-        
-while True:
-    displayboard()
+
+
+def playermove(icon):
+    '''modifies the board with the players input'''
+    if icon == 'O':
+        number = 1
+    elif icon == 'X':
+        number = 2
+
+    print("Your turn player {}".format(number))
+    
     choice = int(input('Enter your move (1-9): '))
     if board[choice-1] == ' ':
-        board[choice-1] = 'X'
+        board[choice-1] = icon
     else:
         print()
         print('That move is already taken!')
+
+
+def victory(icon):
+    '''checks to see if a voctory has occurred'''
+    if (board[0] == icon and board[1] == icon and board[2] == icon) or \
+    (board[3] == icon and board[4] == icon and board[5] == icon) or \
+    (board[6] == icon and board[7] == icon and board[8] == icon) or \
+    (board[0] == icon and board[3] == icon and board[6] == icon) or \
+    (board[1] == icon and board[4] == icon and board[7] == icon) or \
+    (board[2] == icon and board[5] == icon and board[8] == icon) or \
+    (board[0] == icon and board[4] == icon and board[8] == icon) or \
+    (board[2] == icon and board[4] == icon and board[6] == icon):
+        return True
+    else:
+        return False
+
+
+def draw():
+    '''checks to see if a draw has occurred'''
+    if ' ' not in board:
+        return True
+    else:
+        return False
+
+
+while True:
+    '''runs steps of the program'''
+    displayboard()
+    playermove('O')
+    displayboard()
+    if victory('O'):
+        print('O Wins!')
+        break
+    elif draw():
+        print ('Its a Draw!')
+        break
+    playermove('X')
+    if victory('X'):
+        print('X Wins!')
+        break
+    elif draw():
+        print ('Its a Draw!')
+        break
